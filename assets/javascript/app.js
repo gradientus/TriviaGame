@@ -144,13 +144,22 @@ $(document).ready(function() {
     }
   ];
 
-  console.log(questions[2].a[3]);
+  var questionsText = $("<div>");
+  var answersText = $("<div>");
+  $(questionsText).addClass("questions");
+  $(answersText).addClass("answers");
+  $(questionsText).text(questions[0].q);
+  //I'd like to randomize this
+
+  $(answersText).text(questions[0].c);
+  //? How do I get all of them on the screen?
+
+  $("#questionsHere").append(questionsText);
+  $("#answersHere").append(answersText);
 });
 
 //foundation
-
-//create a object with all the questions and answers.  the answers will be an array of 5 answers
-//the answers will contain 4 a and 1 c  a=answer c=correct
+//add the first set of answers to another div
 //randomize the questions that will be chosen and shown
 //randomize the order of the answers for each question
 //create an array of good answer gifs (10)
