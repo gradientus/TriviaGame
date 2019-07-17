@@ -57,7 +57,7 @@ $(document).ready(function() {
       c: "Billie Burke"
     },
     {
-      q: "Why was Shirley Temple passed over for the role of Dorthy",
+      q: "Why was Shirley Temple passed over for the role of Dorthy?",
       a: [
         "She didn't want the role.",
         "She was busy with other movies.",
@@ -144,35 +144,36 @@ $(document).ready(function() {
     }
   ];
 
+  var randomQuestion = Math.floor(Math.random() * (20 - 0 + 1)) + 0;
   var questionsText = $("<div>");
   var answersText = $("<div>");
   $(questionsText).addClass("questions");
   $(answersText).addClass("answers");
-  $(questionsText).text(questions[0].q); //FIXME:I'd like to randomize this
+  $(questionsText).text(questions[randomQuestion].q);
+  console.log(randomQuestion);
 
   $(answersText).text(
-    questions[0].a[0] +
+    questions[randomQuestion].a[0] +
       " " +
-      questions[0].a[1] +
+      questions[randomQuestion].a[1] +
       " " +
-      questions[0].a[2] +
+      questions[randomQuestion].a[2] +
       " " +
-      questions[0].a[3] +
+      questions[randomQuestion].a[3] +
       " " +
-      questions[0].c
-  ); //FIXME: How do I get all of them on the screen?
-
+      questions[randomQuestion].c
+  ); //F
   $("#questionsHere").append(questionsText);
   $("#answersHere").append(answersText);
 });
 
 //TODO:  Foundation
-//add all the answers to the answersHere div.
+//randomize the order of the questions 0-3 & c.
+//put all the answers into buttons
 //add an on click event listener to detect which of the answers the user click on
 //if the user clicks on any of the answers except c, show that the answer is wrong
 //else if the user clicks on c then show that the answer is right
-//randomize the questions that will be chosen and shown
-//randomize the order of the answers for each question
+
 //create an array of good answer gifs (10)
 //create an arry of bad answer gifs (10)
 //create an array of game over gifs (5)
