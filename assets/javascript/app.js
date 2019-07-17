@@ -148,25 +148,36 @@ $(document).ready(function() {
   var answersText = $("<div>");
   $(questionsText).addClass("questions");
   $(answersText).addClass("answers");
-  $(questionsText).text(questions[0].q);
-  //I'd like to randomize this
+  $(questionsText).text(questions[0].q); //FIXME:I'd like to randomize this
 
-  $(answersText).text(questions[0].c);
-  //? How do I get all of them on the screen?
+  $(answersText).text(
+    questions[0].a[0] +
+      " " +
+      questions[0].a[1] +
+      " " +
+      questions[0].a[2] +
+      " " +
+      questions[0].a[3] +
+      " " +
+      questions[0].c
+  ); //FIXME: How do I get all of them on the screen?
 
   $("#questionsHere").append(questionsText);
   $("#answersHere").append(answersText);
 });
 
-//foundation
-//add the first set of answers to another div
+//TODO:  Foundation
+//add all the answers to the answersHere div.
+//add an on click event listener to detect which of the answers the user click on
+//if the user clicks on any of the answers except c, show that the answer is wrong
+//else if the user clicks on c then show that the answer is right
 //randomize the questions that will be chosen and shown
 //randomize the order of the answers for each question
 //create an array of good answer gifs (10)
 //create an arry of bad answer gifs (10)
 //create an array of game over gifs (5)
 
-//game logic
+//TODO: Game
 //if the correct answer is chosen show random good gif and correct
 //if an incorrect answer is chosen show random bad gif and the correct answer
 //count how many good answers
@@ -175,7 +186,7 @@ $(document).ready(function() {
 //at the end of the 5 questions give a score
 //at the end give a chance to play again
 
-//timers
-//add timer, give 15 seconds to answer the question, if you answer then bad gif and correct answer shown
-//add timer, give 5 seconds to see the right/wrong answer
+//TODO: timers
+//add timer, give 10-20 seconds to answer the question, if you answer then bad gif and correct answer shown, test it out
+//add timer, give 5-10 seconds to see the right/wrong answer
 //at the very end, no timer just the score and a chance to start again and a larger game over gif
