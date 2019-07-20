@@ -57,7 +57,7 @@ $(document).ready(function() {
   //function to create the rules message and the button
   function gameStart() {
     var rulesText = $("<div>");
-    var startButton = $("<button>");
+    var button = $("<button>");
 
     rulesText.addClass("rulesText");
     rulesText.text(
@@ -65,9 +65,9 @@ $(document).ready(function() {
     );
     $(".contents").append(rulesText);
 
-    startButton.addClass("startButton");
-    startButton.text("We're Off to See the Wizard!");
-    $(".contents").append(startButton);
+    button.addClass("startButton");
+    button.text("We're Off to See the Wizard!");
+    $(".contents").append(button);
   }
   gameStart();
 
@@ -81,20 +81,32 @@ $(document).ready(function() {
   }
 
   //function to add the picked question and answer from pickedQuestion to the contents class
-  // function generateQuestion() {
-  //   var questionText = $("<div>");
-  //   questionText.addClass("questionText");
-  //   questionText.text(questions[5].q);
-  //   $(".content").append(questionText);
-  // }
-
-  //when the start button is clicked the contents are cleared to make way for the questions and answers
-  $(".startButton").on("click", function() {
-    $(".contents").empty();
+  function generateQuestion() {
     var questionText = $("<div>");
     $(questionText).addClass("questionText");
     $(questionText).text(questions[pickQuestion()].q);
     $(".contents").append(questionText);
-    console.log(pickQuestion());
+
+    var answerText = $("<div>");
+    $(answerText).addClass("answerText");
+    $(answerText).text(questions[pickQuestion()].a);
+    $(".contents").append(answerText);
+  }
+
+  //when the start button is clicked the contents are cleared to make way for the questions and answers
+  //NOTE: Maybe I should make this more generic.  Any button that is clicked.
+  $("button").on("click", function() {
+    $(".contents").empty();
+    generateQuestion();
+    var button = $("<button>");
+    button.addClass("nextButton");
+    button.text("Next question!");
+    $(".contents").append(button);
   });
+
+  //TODO: Keep track of already asked questions.
+  //TODO: Keep track of the score
+  //TODO: Add a timer
+  //QUESTION: How do I let them know what the right answer is every time.  if then?
+  //TODO: The the user only have 5 questions.
 });
