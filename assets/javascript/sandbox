@@ -1,0 +1,20 @@
+var randomQuestion = Math.floor(Math.random() * questions.length);
+  var questionsText = $("<div>");
+  var answersText = $("<div>");
+
+  $(questionsText).addClass("questions");
+  $(answersText).addClass("answers");
+  $(questionsText).text(questions[randomQuestion].q);
+  $(answersText).text(
+    questions[randomQuestion].a[0] +
+      " " +
+      questions[randomQuestion].a[1] +
+      " " +
+      questions[randomQuestion].a[2] +
+      " " +
+      questions[randomQuestion].a[3] +
+      " " +
+      questions[randomQuestion].c
+  );
+  $("#questionsHere").append(questionsText);
+  $("#answersHere").append(answersText);
