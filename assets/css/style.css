@@ -12,19 +12,16 @@ body {
   font-family: "Josefin Sans", sans-serif;
 }
 
-.container {
-  padding: 1.25rem;
-  box-shadow: 0 0 0.5rem 0.1rem #fff;
+#timer {
+  font-size: 1.33rem;
 }
 
-.title {
-  text-align: center;
-  font-size: 2.5rem;
-  color: darkgreen;
-  font-weight: bold;
+#mainGame {
+  margin-top: 2rem;
+  font-size: 1.33rem;
 }
 
-.question {
-  padding: 1rem;
-  font-size: 1.75rem;
+.answer-choices {
+  margin-top: 1rem;
+  font-size: 1rem;
 }

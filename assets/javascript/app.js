@@ -184,17 +184,18 @@ var questions = [
 var correct = 0;
 var incorrect = 0;
 var currentQuestion = 0;
-var timerCounter = 20;
+var timerCounter = 15;
 var timerValue;
 
 //Put the questions and the answers on the screen.
 function questionToScreen() {
+  timerCounter = 15;
+  timerValue = setInterval(countDown, 1000);
+
   var questionToScreen = questions[currentQuestion].question;
   var answerToScreen = questions[currentQuestion].answers;
   $("#timer").text("Countdown: " + timerCounter);
   $("#mainGame").text(questionToScreen);
-
-  console.log(answerToScreen);
 
   for (var i = 0; i < answerToScreen.length; i++) {
     var answersHere = $("<p>");
@@ -205,3 +206,12 @@ function questionToScreen() {
   }
 }
 questionToScreen();
+
+//timer to count down seconds
+function countDown() {
+  timerCounter--;
+  $("#timer").text("Countdown: " + timerCounter);
+  if (timerCounter === 0) {
+    clearInterval(timerValue);
+  }
+}
