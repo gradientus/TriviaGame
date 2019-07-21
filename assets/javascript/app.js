@@ -193,5 +193,15 @@ function questionToScreen() {
   var answerToScreen = questions[currentQuestion].answers;
   $("#timer").text("Countdown: " + timerCounter);
   $("#mainGame").text(questionToScreen);
+
+  console.log(answerToScreen);
+
+  for (var i = 0; i < answerToScreen.length; i++) {
+    var answersHere = $("<p>");
+    $(answersHere).attr("data-value", answerToScreen[i]);
+    $(answersHere).addClass("answer-choices");
+    $(answersHere).text(answerToScreen[i]);
+    $("#mainGame").append(answersHere);
+  }
 }
 questionToScreen();
