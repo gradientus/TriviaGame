@@ -184,12 +184,13 @@ var questions = [
 var correct = 0;
 var incorrect = 0;
 var currentQuestion = 0;
-var timerCounter = 15;
+var timerCounter = 5;
 var timerValue;
+var questionCounter = 0;
 
 //Put the questions and the answers on the screen.
 function questionToScreen() {
-  timerCounter = 15;
+  timerCounter = 5;
   timerValue = setInterval(countDown, 1000);
 
   var questionToScreen = questions[currentQuestion].question;
@@ -213,5 +214,22 @@ function countDown() {
   $("#timer").text("Countdown: " + timerCounter);
   if (timerCounter === 0) {
     clearInterval(timerValue);
+    incorrect++;
+    questionCounter++;
+    next();
   }
 }
+
+//this will allow to go to the next question
+function next() {
+  currentQuestion++;
+  questionToScreen();
+  if (questionCounter === 5) {
+    console.log("GAME OVER");
+    //QUESTION: HOW DO I MAKE THE GAME STOP AT 5?
+  }
+}
+
+//NOTE: Instead of increment the questions make them random.
+//NOTE: Only 5 questions get asked at a time.
+//T
