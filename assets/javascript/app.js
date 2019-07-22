@@ -184,13 +184,13 @@ var questions = [
 var correct = 0;
 var incorrect = 0;
 var currentQuestion = 0;
-var timerCounter = 5;
+var timerCounter = 15;
 var timerValue;
 var questionCounter = 0;
 
 //Put the questions and the answers on the screen.
 function questionToScreen() {
-  timerCounter = 5;
+  timerCounter = 15;
   timerValue = setInterval(countDown, 1000);
 
   var questionToScreen = questions[currentQuestion].question;
@@ -221,15 +221,40 @@ function countDown() {
 }
 
 //this will allow to go to the next question
+//QUESTION: How do I get the game to stop at 5????????
 function next() {
   currentQuestion++;
   questionToScreen();
   if (questionCounter === 5) {
-    console.log("GAME OVER");
-    //QUESTION: HOW DO I MAKE THE GAME STOP AT 5?
+    yourScore();
   }
 }
 
+//to handle the clicks on the answers and determine if it was right or not
+$(document).on("click", ".answer-choices", function() {
+  var chosenAnswer = $(this).attr("data-value");
+  var correctAnswer = questions[currentQuestion].correct;
+
+  if (correctAnswer === chosenAnswer) {
+    correct++;
+    next();
+    clearInterval(timerValue);
+  } else {
+    incorrect++;
+    next();
+    clearInterval(timerValue);
+  }
+
+  //To show the user how many right and how many wrong and a way to start over.
+  function yourScore() {
+    $("#mainGame").html("<p>Correct: " + correct + "</p>");
+    $("#mainGame").html("<p>Correct: " + incorrect + "</p>");
+    $("#mainGame").html("<button class='playAgain'>Play again</button>");
+  }
+});
+
 //NOTE: Instead of increment the questions make them random.
 //NOTE: Only 5 questions get asked at a time.
-//T
+
+//QUESTION: WTF is going on with the timer?  JFC!!
+//QUESTION: WTF is going on with the button???

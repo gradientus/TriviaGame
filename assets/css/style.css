@@ -24,4 +24,43 @@ body {
 .answer-choices {
   margin-top: 1rem;
   font-size: 1rem;
+  border: 1px green solid;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.answer-choices:hover {
+  background-color: forestgreen;
+  color: white;
+  font-weight: bold;
+}
+
+.answer-choices:active {
+  background-color: forestgreen;
+  color: white;
+  font-weight: bold;
+}
+
+.answer-choices:focus {
+  background-color: forestgreen;
+  color: white;
+  font-weight: bold;
+}
+
+.playAgain:hover {
+  background-color: forestgreen;
+  color: white;
+  font-weight: bold;
+}
+
+.playAgain:active {
+  background-color: forestgreen;
+  color: white;
+  font-weight: bold;
+}
+
+.playAgain:focus {
+  background-color: forestgreen;
+  color: white;
+  font-weight: bold;
 }
