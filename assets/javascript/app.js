@@ -195,17 +195,6 @@ var questions = [
     correct: "my pretty"
   },
   {
-    question: "Who played Glinda, the Good Witch of the North?",
-    answers: [
-      "Billie Holiday",
-      "Billie Burke",
-      "Billy Joel",
-      "Billy Eilish",
-      "nobody"
-    ],
-    correct: "Billie Burke"
-  },
-  {
     question:
       "Which Pink Floyd album can be synchronized with the film if you start it on the 3rd MGM lion roar?",
     answers: [
@@ -216,18 +205,29 @@ var questions = [
       "A Momentary Lapse of Reason"
     ],
     correct: "The Dark Side of the Moon"
+  },
+  {
+    question: "Who played Glinda, the Good Witch of the North?",
+    answers: [
+      "Billie Holiday",
+      "Billie Burke",
+      "Billy Joel",
+      "Billy Eilish",
+      "nobody"
+    ],
+    correct: "Billie Burke"
   }
 ];
 var correct = 0;
 var incorrect = 0;
 var currentQuestion = Math.floor(Math.random() * questions.length);
-var timerCounter = 15;
+//var timerCounter = 2;
 var timerValue;
-var questionCounter = 5;
+var questionCounter = 1;
 
 //Put the questions and the answers on the screen.
 function questionToScreen() {
-  timerCounter = 15;
+  timerCounter = 5;
   timerValue = setInterval(countDown, 1000);
   var questionToScreen = questions[currentQuestion].question;
   var answerToScreen = questions[currentQuestion].answers;
@@ -243,33 +243,38 @@ function questionToScreen() {
   }
 }
 questionToScreen();
+console.log(questionCounter);
 
 //timer to count down seconds and what to do if user runs out of time
 function countDown() {
   timerCounter--;
   $("#timer").text("Countdown: " + timerCounter);
+
   if (timerCounter === 0) {
     clearInterval(timerValue);
     incorrect++;
     questionCounter++;
     next();
+    console.log("Incorrect" + incorrect);
+    console.log("Question" + questionCounter);
   }
 }
 
+function yourScore() {
+  $("#mainGame").append("<p>Correct: " + correct + "</p>");
+  $("#mainGame").append("<p>Incorrect: " + incorrect + "</p>");
+  $("#mainGame").append("<button class='playAgain'>Play again</button>");
+}
+
 //this will allow user to automatically go to the next question if there is an answer chosen.
-//FIXME: The questionCounter is not incrementing
 function next() {
   if (questionCounter === 5) {
     $("#mainGame").empty();
     $("#timer").remove();
     yourScore();
-    console.log("GAME OVER");
-    console.log("QuestionCounter:" + questionCounter);
   } else {
     currentQuestion++;
     questionToScreen();
-    console.log("KEEP GOING");
-    console.log("QuestionCounter:" + questionCounter);
   }
 }
 
@@ -282,24 +287,22 @@ $(document).on("click", ".answer-choices", function() {
     correct++;
     next();
     clearInterval(timerValue);
+    questionCounter++;
     console.log("Correct" + correct);
+    console.log("Question" + questionCounter);
   } else {
     incorrect++;
     next();
     clearInterval(timerValue);
+    questionCounter++;
     console.log("Incorrect" + incorrect);
-  }
-
-  //FIXME: I can't seem to get this to happen after 5 questions.
-  //To show the user how many right and how many wrong and a way to start over.
-  function yourScore() {
-    $("#mainGame").append("<p>Correct: " + correct + "</p>");
-    $("#mainGame").append("<p>Correct: " + incorrect + "</p>");
-    $("#mainGame").append("<button class='playAgain'>Play again</button>");
   }
 });
 
 //TODO: After each question is guessed there must be a display of a gif right nd wrong with the correct answer given.
-
-//FIXME: the youScore is not being called it isn't recognized
-//FIXME:  the game start again after the score is shown, it should only do that if the user wants to
+//TODO: Clicking play again will invoke the questionsToScreen or next function to start over.
+//TODO: Add a function to start the game it should be a blank except for the start button
+//TODO: Once the start button is clicked it is removed
+//FIXME: if I just leave everything to time out, the score only gets to 4
+//FIXME: there is something wrong if the last question is chosen
+//FIXME: if I answer all correctly or incorrectly , yourScore is invoked, there is a wait period, then the game starts again but if no answers are giving, the score is wrong and no auto restart
