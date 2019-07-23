@@ -46,21 +46,3 @@ body {
   color: white;
   font-weight: bold;
 }
-
-.playAgain:hover {
-  background-color: forestgreen;
-  color: white;
-  font-weight: bold;
-}
-
-.playAgain:active {
-  background-color: forestgreen;
-  color: white;
-  font-weight: bold;
-}
-
-.playAgain:focus {
-  background-color: forestgreen;
-  color: white;
-  font-weight: bold;
-}

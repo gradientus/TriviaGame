@@ -169,6 +169,43 @@ var questions = [
     correct: "apple"
   },
   {
+    question: "Who earned more per week?",
+    answers: ["Munchkins", "Toto", "Flying Monkeys", "Liza Minelli", "extras"],
+    correct: "Toto"
+  },
+  {
+    question: "Of all the cast and crew, how many are alive today?",
+    answers: ["5", "2", "1", "80", "0"],
+    correct: "0"
+  },
+  {
+    question: "What was the Cowardly Lion's costume made of?",
+    answers: ["real lion", "leather", "cow hide", "polyester", "spandex"],
+    correct: "real lion"
+  },
+  {
+    question: "Quote: I'll get you, _____, and your little dog, too?",
+    answers: [
+      "my little one",
+      "you skank",
+      "my pretty",
+      "earth girl",
+      "Dorothy"
+    ],
+    correct: "my pretty"
+  },
+  {
+    question: "Who played Glinda, the Good Witch of the North?",
+    answers: [
+      "Billie Holiday",
+      "Billie Burke",
+      "Billy Joel",
+      "Billy Eilish",
+      "nobody"
+    ],
+    correct: "Billie Burke"
+  },
+  {
     question:
       "Which Pink Floyd album can be synchronized with the film if you start it on the 3rd MGM lion roar?",
     answers: [
@@ -183,16 +220,15 @@ var questions = [
 ];
 var correct = 0;
 var incorrect = 0;
-var currentQuestion = 0;
+var currentQuestion = Math.floor(Math.random() * questions.length);
 var timerCounter = 15;
 var timerValue;
-var questionCounter = 0;
+var questionCounter = 5;
 
 //Put the questions and the answers on the screen.
 function questionToScreen() {
   timerCounter = 15;
   timerValue = setInterval(countDown, 1000);
-
   var questionToScreen = questions[currentQuestion].question;
   var answerToScreen = questions[currentQuestion].answers;
   $("#timer").text("Countdown: " + timerCounter);
@@ -208,7 +244,7 @@ function questionToScreen() {
 }
 questionToScreen();
 
-//timer to count down seconds
+//timer to count down seconds and what to do if user runs out of time
 function countDown() {
   timerCounter--;
   $("#timer").text("Countdown: " + timerCounter);
@@ -220,13 +256,20 @@ function countDown() {
   }
 }
 
-//this will allow to go to the next question
-//QUESTION: How do I get the game to stop at 5????????
+//this will allow user to automatically go to the next question if there is an answer chosen.
+//FIXME: The questionCounter is not incrementing
 function next() {
-  currentQuestion++;
-  questionToScreen();
   if (questionCounter === 5) {
+    $("#mainGame").empty();
+    $("#timer").remove();
     yourScore();
+    console.log("GAME OVER");
+    console.log("QuestionCounter:" + questionCounter);
+  } else {
+    currentQuestion++;
+    questionToScreen();
+    console.log("KEEP GOING");
+    console.log("QuestionCounter:" + questionCounter);
   }
 }
 
@@ -239,22 +282,24 @@ $(document).on("click", ".answer-choices", function() {
     correct++;
     next();
     clearInterval(timerValue);
+    console.log("Correct" + correct);
   } else {
     incorrect++;
     next();
     clearInterval(timerValue);
+    console.log("Incorrect" + incorrect);
   }
 
+  //FIXME: I can't seem to get this to happen after 5 questions.
   //To show the user how many right and how many wrong and a way to start over.
   function yourScore() {
-    $("#mainGame").html("<p>Correct: " + correct + "</p>");
-    $("#mainGame").html("<p>Correct: " + incorrect + "</p>");
-    $("#mainGame").html("<button class='playAgain'>Play again</button>");
+    $("#mainGame").append("<p>Correct: " + correct + "</p>");
+    $("#mainGame").append("<p>Correct: " + incorrect + "</p>");
+    $("#mainGame").append("<button class='playAgain'>Play again</button>");
   }
 });
 
-//NOTE: Instead of increment the questions make them random.
-//NOTE: Only 5 questions get asked at a time.
+//TODO: After each question is guessed there must be a display of a gif right nd wrong with the correct answer given.
 
-//QUESTION: WTF is going on with the timer?  JFC!!
-//QUESTION: WTF is going on with the button???
+//FIXME: the youScore is not being called it isn't recognized
+//FIXME:  the game start again after the score is shown, it should only do that if the user wants to
