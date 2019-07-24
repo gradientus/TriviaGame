@@ -221,9 +221,8 @@ var questions = [
 var correct = 0;
 var incorrect = 0;
 var currentQuestion = Math.floor(Math.random() * questions.length);
-//var timerCounter = 2;
 var timerValue;
-var questionCounter = 1;
+var questionCounter = 0;
 
 //Put the questions and the answers on the screen.
 function questionToScreen() {
@@ -261,8 +260,9 @@ function countDown() {
 }
 
 function yourScore() {
-  $("#mainGame").append("<p>Correct: " + correct + "</p>");
-  $("#mainGame").append("<p>Incorrect: " + incorrect + "</p>");
+  $("#mainGame").append("<p>Answered Correctly: " + correct + "</p>");
+  $("#mainGame").append("<p>Answered Incorrectly: " + incorrect + "</p>");
+  $("#mainGame").append("<p>Total Questions: " + questionCounter + "</p>");
   $("#mainGame").append("<button class='playAgain'>Play again</button>");
 }
 
@@ -285,17 +285,14 @@ $(document).on("click", ".answer-choices", function() {
 
   if (correctAnswer === chosenAnswer) {
     correct++;
-    next();
     clearInterval(timerValue);
     questionCounter++;
-    console.log("Correct" + correct);
-    console.log("Question" + questionCounter);
+    next();
   } else {
     incorrect++;
-    next();
     clearInterval(timerValue);
     questionCounter++;
-    console.log("Incorrect" + incorrect);
+    next();
   }
 });
 
