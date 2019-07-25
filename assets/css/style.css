@@ -10,8 +10,18 @@ html {
 
 body {
   font-family: "Josefin Sans", sans-serif;
+  background-color: black;
 }
 
+.mainTitle {
+  background-image: url("../images/wizardofoz.png");
+  width: 59.58rem;
+  height: 30rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  color: white;
+}
 #timer {
   font-size: 1.33rem;
 }

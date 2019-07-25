@@ -218,9 +218,11 @@ var questions = [
     correct: "Billie Burke"
   }
 ];
+var correctGif = [];
+var incorrectGif = [];
 var correct = 0;
 var incorrect = 0;
-var currentQuestion = Math.floor(Math.random() * questions.length);
+var currentQuestion = Math.floor(Math.random() * 29);
 var timerValue;
 var questionCounter = 0;
 
@@ -242,23 +244,20 @@ function questionToScreen() {
   }
 }
 questionToScreen();
-console.log(questionCounter);
 
 //timer to count down seconds and what to do if user runs out of time
 function countDown() {
   timerCounter--;
   $("#timer").text("Countdown: " + timerCounter);
-
   if (timerCounter === 0) {
     clearInterval(timerValue);
     incorrect++;
     questionCounter++;
     next();
-    console.log("Incorrect" + incorrect);
-    console.log("Question" + questionCounter);
   }
 }
 
+//this tells us the score after 5 questions have been asked
 function yourScore() {
   $("#mainGame").append("<p>Answered Correctly: " + correct + "</p>");
   $("#mainGame").append("<p>Answered Incorrectly: " + incorrect + "</p>");
@@ -266,7 +265,7 @@ function yourScore() {
   $("#mainGame").append("<button class='playAgain'>Play again</button>");
 }
 
-//this will allow user to automatically go to the next question if there is an answer chosen.
+//this will stop the game or move to the next question if the user hasn't reached 5 questions
 function next() {
   if (questionCounter === 5) {
     $("#mainGame").empty();
@@ -282,17 +281,16 @@ function next() {
 $(document).on("click", ".answer-choices", function() {
   var chosenAnswer = $(this).attr("data-value");
   var correctAnswer = questions[currentQuestion].correct;
-
   if (correctAnswer === chosenAnswer) {
     correct++;
     clearInterval(timerValue);
     questionCounter++;
-    next();
+    next(); //ATTN:might have to call new function
   } else {
     incorrect++;
     clearInterval(timerValue);
     questionCounter++;
-    next();
+    next(); //ATTN:might have to call different function
   }
 });
 
@@ -300,6 +298,3 @@ $(document).on("click", ".answer-choices", function() {
 //TODO: Clicking play again will invoke the questionsToScreen or next function to start over.
 //TODO: Add a function to start the game it should be a blank except for the start button
 //TODO: Once the start button is clicked it is removed
-//FIXME: if I just leave everything to time out, the score only gets to 4
-//FIXME: there is something wrong if the last question is chosen
-//FIXME: if I answer all correctly or incorrectly , yourScore is invoked, there is a wait period, then the game starts again but if no answers are giving, the score is wrong and no auto restart
