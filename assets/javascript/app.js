@@ -218,17 +218,36 @@ var questions = [
     correct: "Billie Burke"
   }
 ];
-var correctGif = [];
-var incorrectGif = [];
+var correctGif = [
+  "../images/correct1.gif",
+  "../images/correct2.gif",
+  "../images/correct3.gif",
+  "../images/correct4.gif",
+  "../images/correct5.gif",
+  "../images/correct6.gif",
+  "../images/correct7.gif"
+];
+var incorrectGif = [
+  "../images/wrong1.gif",
+  "../images/wrong2.gif",
+  "../images/wrong3.gif",
+  "../images/wrong4.gif",
+  "../images/wrong5.gif",
+  "../images/wrong6.gif",
+  "../images/wrong7.gif"
+];
 var correct = 0;
 var incorrect = 0;
 var currentQuestion = Math.floor(Math.random() * 29);
 var timerValue;
 var questionCounter = 0;
 
-//Put the questions and the answers on the screen.
+console.log(correctGif);
+console.log(incorrectGif);
+
+//this here will allow the user to see the questions and the answers on-screen
 function questionToScreen() {
-  timerCounter = 5;
+  timerCounter = 15;
   timerValue = setInterval(countDown, 1000);
   var questionToScreen = questions[currentQuestion].question;
   var answerToScreen = questions[currentQuestion].answers;
@@ -245,7 +264,7 @@ function questionToScreen() {
 }
 questionToScreen();
 
-//timer to count down seconds and what to do if user runs out of time
+//this here is a timer to count down seconds and what to do if user runs out of time
 function countDown() {
   timerCounter--;
   $("#timer").text("Countdown: " + timerCounter);
@@ -257,7 +276,7 @@ function countDown() {
   }
 }
 
-//this tells us the score after 5 questions have been asked
+//this here ends the game and tells the user the score
 function yourScore() {
   $("#mainGame").append("<p>Answered Correctly: " + correct + "</p>");
   $("#mainGame").append("<p>Answered Incorrectly: " + incorrect + "</p>");
@@ -265,7 +284,7 @@ function yourScore() {
   $("#mainGame").append("<button class='playAgain'>Play again</button>");
 }
 
-//this will stop the game or move to the next question if the user hasn't reached 5 questions
+//this here will stop the game or move to the next question if the user hasn't reached 5 questions
 function next() {
   if (questionCounter === 5) {
     $("#mainGame").empty();
@@ -277,7 +296,15 @@ function next() {
   }
 }
 
-//to handle the clicks on the answers and determine if it was right or not
+//this here allows the user to start the game again
+$(document).on("click", ".playAgain", function() {
+  correct = 0;
+  incorrect = 0;
+  questionCounter = 0;
+  questionToScreen();
+});
+
+//this here is to handle the clicks on the answers and determine if it was right or not
 $(document).on("click", ".answer-choices", function() {
   var chosenAnswer = $(this).attr("data-value");
   var correctAnswer = questions[currentQuestion].correct;

@@ -11,11 +11,12 @@ html {
 body {
   font-family: "Josefin Sans", sans-serif;
   background-color: black;
+  color: white;
 }
 
 .mainTitle {
   background-image: url("../images/wizardofoz.png");
-  width: 59.58rem;
+  width: 100%;
   height: 30rem;
   background-repeat: no-repeat;
   background-size: contain;
@@ -27,12 +28,12 @@ body {
 }
 
 #mainGame {
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 1.33rem;
 }
 
 .answer-choices {
-  margin-top: 1rem;
+  margin-top: 0.88rem;
   font-size: 1rem;
   border: 1px green solid;
   text-align: center;
