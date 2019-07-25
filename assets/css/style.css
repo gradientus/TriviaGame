@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "wiz";
+  src: url("wiz.ttf") format("truetype");
+}
+
 html {
   box-sizing: border-box;
 }
@@ -10,32 +15,35 @@ html {
 
 body {
   font-family: "Josefin Sans", sans-serif;
-  background-color: black;
-  color: white;
+  background-image: url("../images/oz.gif");
+  background-size: cover;
+  color: black;
 }
 
 .mainTitle {
-  background-image: url("../images/wizardofoz.png");
-  width: 100%;
-  height: 30rem;
-  background-repeat: no-repeat;
-  background-size: contain;
-
-  color: white;
+  font-family: "wiz", Arial, Helvetica, sans-serif;
+  margin-top: 1rem;
+  color: forestgreen;
+  font-size: 5rem;
+  font-weight: bold;
 }
 #timer {
   font-size: 1.33rem;
+  background-color: rgba(34, 139, 34, 0.7);
+  color: white;
 }
 
 #mainGame {
   margin-top: 1rem;
   font-size: 1.33rem;
+  background-color: rgba(34, 139, 34, 0.7);
+  color: white;
 }
 
 .answer-choices {
   margin-top: 0.88rem;
   font-size: 1rem;
-  border: 1px green solid;
+
   text-align: center;
   padding: 0.5rem;
 }

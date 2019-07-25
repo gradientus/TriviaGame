@@ -230,31 +230,28 @@ var questions = [
   }
 ];
 var correctGif = [
-  "../images/correct1.gif",
-  "../images/correct2.gif",
-  "../images/correct3.gif",
-  "../images/correct4.gif",
-  "../images/correct5.gif",
-  "../images/correct6.gif",
-  "../images/correct7.gif"
+  "assets/images/correct1.gif",
+  "assets/images/correct2.gif",
+  "assets/images/correct3.gif",
+  "assets/images/correct4.gif",
+  "assets/images/correct5.gif",
+  "assets/images/correct6.gif",
+  "assets/images/correct7.gif"
 ];
 var incorrectGif = [
-  "../images/wrong1.gif",
-  "../images/wrong2.gif",
-  "../images/wrong3.gif",
-  "../images/wrong4.gif",
-  "../images/wrong5.gif",
-  "../images/wrong6.gif",
-  "../images/wrong7.gif"
+  "assets/images/wrong1.gif",
+  "assets/images/wrong2.gif",
+  "assets/images/wrong3.gif",
+  "assets/images/wrong4.gif",
+  "assets/images/wrong5.gif",
+  "assets/images/wrong6.gif",
+  "assets/images/wrong7.gif"
 ];
 var correct = 0;
 var incorrect = 0;
-var currentQuestion = Math.floor(Math.random() * 29);
+var currentQuestion = Math.floor(Math.random() * 28);
 var timerValue;
 var questionCounter = 0;
-
-console.log(correctGif);
-console.log(incorrectGif);
 
 //this here will allow the user to see the questions and the answers on-screen
 function questionToScreen() {
@@ -323,15 +320,28 @@ $(document).on("click", ".answer-choices", function() {
     correct++;
     clearInterval(timerValue);
     questionCounter++;
-    next(); //ATTN:might have to call new function
+    images("win");
+    setTimeout(next, 3 * 1000);
   } else {
     incorrect++;
     clearInterval(timerValue);
     questionCounter++;
-    next(); //ATTN:might have to call different function
+    images("lose");
+    setTimeout(next, 3 * 1000);
   }
 });
 
-//TODO: After each question is guessed there must be a display of a gif right nd wrong with the correct answer given.
-//TODO: Clicking play again will invoke the questionsToScreen or next function to start over.
-//TODO: Add a function to start the game it should be a blank except for the start button
+function images(winLose) {
+  var goodAnswer = questions[currentQuestion].correctAnswer;
+  if (winLose === "win") {
+    var correctImage = Math.floor(Math.random() * correctGif.length);
+    $("#mainGame").html(`<p>CORRECT!</p><img src=${correctGif[correctImage]}>`);
+    $("#timer").empty();
+  } else {
+    var incorrectImage = Math.floor(Math.random() * incorrectGif.length);
+    $("#mainGame").html(
+      `<p>WRONG!</p><img src=${incorrectGif[incorrectImage]}>`
+    );
+    $("#timer").empty();
+  }
+}
