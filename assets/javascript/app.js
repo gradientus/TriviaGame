@@ -335,12 +335,14 @@ function images(winLose) {
   var goodAnswer = questions[currentQuestion].correctAnswer;
   if (winLose === "win") {
     var correctImage = Math.floor(Math.random() * correctGif.length);
-    $("#mainGame").html(`<p>CORRECT!</p><img src=${correctGif[correctImage]}>`);
+    $("#mainGame").html(
+      `<p>CORRECT!</p><img src=${correctGif[correctImage]} class="right">`
+    );
     $("#timer").empty();
   } else {
     var incorrectImage = Math.floor(Math.random() * incorrectGif.length);
     $("#mainGame").html(
-      `<p>WRONG!</p><img src=${incorrectGif[incorrectImage]}>`
+      `<p>WRONG!</p><img src=${incorrectGif[incorrectImage]} class="wrong">`
     );
     $("#timer").empty();
   }
