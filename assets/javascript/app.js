@@ -199,7 +199,7 @@ var questions = [
       "Which Pink Floyd album can be synchronized with the film if you start it on the 3rd MGM lion roar?",
     answers: [
       "Ummagumma",
-      " The Dark Side of the Moon",
+      "The Dark Side of the Moon",
       "The Wall",
       "The Division Bell",
       "A Momentary Lapse of Reason"
@@ -253,13 +253,14 @@ var incorrectGif = [
 ];
 var correct = 0;
 var incorrect = 0;
+//var timerCounter = 15;
 var currentQuestion = Math.floor(Math.random() * 28);
 var timerValue;
 var questionCounter = 0;
 
 //this here will allow the user to see the questions and the answers on-screen
 function questionToScreen() {
-  timerCounter = 15;
+  timerCounter = 5;
   timerValue = setInterval(countDown, 1000);
   var questionToScreen = questions[currentQuestion].question;
   var answerToScreen = questions[currentQuestion].answers;
@@ -300,7 +301,7 @@ function yourScore() {
 function next() {
   if (questionCounter === 5) {
     $("#mainGame").empty();
-    $("#timer").remove();
+    $("#timer").empty();
     yourScore();
   } else {
     currentQuestion++;
