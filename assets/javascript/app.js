@@ -220,13 +220,13 @@ var questions = [
   {
     question: "Who was the wizard?",
     answers: [
-      "a phony professor from Kansas",
-      "a figment of Dorothy's imagination",
-      "a fraud",
-      "a lost old man",
-      "the temporary ruler of Oz"
+      "Dorothy's uncle",
+      "the Wicked Witch's brother",
+      "a fraud from Kansas",
+      "an angry, bitter old man",
+      "the Gnome King"
     ],
-    correct: "a fraud"
+    correct: "a fraud from Kansas"
   }
 ];
 var correctGif = [
@@ -236,7 +236,9 @@ var correctGif = [
   "assets/images/correct4.gif",
   "assets/images/correct5.gif",
   "assets/images/correct6.gif",
-  "assets/images/correct7.gif"
+  "assets/images/correct7.gif",
+  "assets/images/correct8.gif",
+  "assets/images/correct9.gif"
 ];
 var incorrectGif = [
   "assets/images/wrong1.gif",
@@ -245,7 +247,9 @@ var incorrectGif = [
   "assets/images/wrong4.gif",
   "assets/images/wrong5.gif",
   "assets/images/wrong6.gif",
-  "assets/images/wrong7.gif"
+  "assets/images/wrong7.gif",
+  "assets/images/wrong8.gif",
+  "assets/images/wrong9.gif"
 ];
 var correct = 0;
 var incorrect = 0;
@@ -331,6 +335,7 @@ $(document).on("click", ".answer-choices", function() {
   }
 });
 
+//this here lets the user know if the answer was correct or incorrect and shows a gif
 function images(winLose) {
   var goodAnswer = questions[currentQuestion].correctAnswer;
   if (winLose === "win") {
