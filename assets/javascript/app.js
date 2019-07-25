@@ -216,6 +216,17 @@ var questions = [
       "nobody"
     ],
     correct: "Billie Burke"
+  },
+  {
+    question: "Who was the wizard?",
+    answers: [
+      "a phony professor from Kansas",
+      "a figment of Dorothy's imagination",
+      "a fraud",
+      "a lost old man",
+      "the temporary ruler of Oz"
+    ],
+    correct: "a fraud"
   }
 ];
 var correctGif = [
@@ -324,4 +335,3 @@ $(document).on("click", ".answer-choices", function() {
 //TODO: After each question is guessed there must be a display of a gif right nd wrong with the correct answer given.
 //TODO: Clicking play again will invoke the questionsToScreen or next function to start over.
 //TODO: Add a function to start the game it should be a blank except for the start button
-//TODO: Once the start button is clicked it is removed
