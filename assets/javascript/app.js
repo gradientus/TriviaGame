@@ -253,14 +253,13 @@ var incorrectGif = [
 ];
 var correct = 0;
 var incorrect = 0;
-//var timerCounter = 15;
 var currentQuestion = Math.floor(Math.random() * 28);
 var timerValue;
 var questionCounter = 0;
 
 //this here will allow the user to see the questions and the answers on-screen
 function questionToScreen() {
-  timerCounter = 5;
+  timerCounter = 15;
   timerValue = setInterval(countDown, 1000);
   var questionToScreen = questions[currentQuestion].question;
   var answerToScreen = questions[currentQuestion].answers;
